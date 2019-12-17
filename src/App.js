@@ -4,52 +4,61 @@ import Navbar from './components/Navbar';
 import CreateTweet from './components/CreateTweet';
 import MyAppContext from './contexts/MyAppContext';
 import TweetList from './components/TweetList';
+import { getTweets, postTweet } from './lib/api';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      tweets: this.getFromLocalStorage(), //render all stored tweets upon loading
+      tweets: [],
       addTweet: this.handleOnSubmit.bind(this)
     };
   }
 
   handleOnSubmit(tweet) {
-    //const { tweets } = this.state;    
     let dateISO = (new Date()).toISOString();
-    let tweetObj = { 
+    let tweetObj = {
       content: tweet,
-      userName: 'yonatan',
+      userName: 'Eve',
       date: dateISO
     };
 
-    this.saveToLocalStorage(tweetObj);
-    this.setState(prevState => { 
+    this.postTweetToServer(tweetObj);
+    this.setState(prevState => {
       return { tweets: [tweetObj, ...prevState.tweets] }
     });
   }
 
-  saveToLocalStorage(tweet) {
-    const tweetsStored = JSON.parse(localStorage.getItem('tweetsStored')) || [];
-    tweetsStored.push(tweet);
-    tweetsStored.sort((a,b) => (a.date > b.date)? -1 : 1);
-    localStorage.setItem("tweetsStored", JSON.stringify(tweetsStored));
+  componentDidMount() {
+    getTweets().then(response => {
+      this.setState({ tweets: response.data.tweets });
+    })
   }
 
-  getFromLocalStorage() {
-    return JSON.parse(localStorage.getItem("tweetsStored")) || [];
+  getTweetsFromServer = () => {
+    getTweets().then(response => {
+      return response.data.tweets;
+    });
+  }
+
+  postTweetToServer = (tweet) => {
+    postTweet(tweet)
+      .then(response => console.log(response))
+      .catch(error => {
+        console.log(error.response)
+      });
   }
 
   render() {
     return (
       <div className="App">
-        
-          <Navbar />
-          <MyAppContext.Provider value={this.state}>
-            <CreateTweet />
-            <TweetList />
-          </MyAppContext.Provider>
-       
+
+        <Navbar />
+        <MyAppContext.Provider value={this.state}>
+          <CreateTweet />
+          <TweetList />
+        </MyAppContext.Provider>
+
       </div>
     );
   }

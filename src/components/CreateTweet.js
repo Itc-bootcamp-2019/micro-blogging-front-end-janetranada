@@ -49,7 +49,7 @@ class CreateTweet extends React.Component {
                             className="white-text my-button"
                             onClick={() => {
                                 addTweet(tweet);
-                                this.setState({tweet: ''});
+                                this.setState({tweet: '', btnDisabled: true});
                             }}
                             disabled = {this.state.btnDisabled}
                         >
