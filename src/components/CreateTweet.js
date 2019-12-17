@@ -5,26 +5,16 @@ class CreateTweet extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            tweet: '',
-            btnDisabled: true,
-            moreThan140: false
+            tweet: ''
         }
     }
 
     handleTweetChange(event) {
-        this.setState({ tweet: event.target.value }, () =>{
-            if (this.state.tweet.length <= 140 && this.state.tweet.length > 0) {                
-                this.setState({btnDisabled: false, moreThan140: false});                              
-            } else if (this.state.tweet.length > 140) {
-                this.setState({btnDisabled: true, moreThan140: true});   
-            } else {
-                this.setState({btnDisabled: true, moreThan140: false});   
-            }
-        })
+        this.setState({ tweet: event.target.value });
     }
 
     render() {
-        const { tweet, moreThan140 } = this.state;
+        const { tweet} = this.state;
 
         return (
             <MyAppContext.Consumer>
@@ -39,7 +29,7 @@ class CreateTweet extends React.Component {
                         >                    
                         </textarea>
 
-                        {moreThan140 && 
+                        {(tweet.length > 140) && 
                             <div className="warning-length">
                                 The tweet can't contain more than 140 chars.
                             </div>
@@ -51,7 +41,7 @@ class CreateTweet extends React.Component {
                                 addTweet(tweet);
                                 this.setState({tweet: '', btnDisabled: true});
                             }}
-                            disabled = {this.state.btnDisabled}
+                            disabled = {tweet.length > 140 || tweet.length === 0}
                         >
                             Tweet
                         </button>
