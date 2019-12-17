@@ -15,10 +15,8 @@ class App extends React.Component {
   }
 
   handleOnSubmit(tweet) {
-    const { tweets } = this.state;
-    console.log('tweets', tweets);
+    //const { tweets } = this.state;    
     let dateISO = (new Date()).toISOString();
-
     let tweetObj = { 
       content: tweet,
       userName: 'yonatan',
@@ -26,9 +24,8 @@ class App extends React.Component {
     };
 
     this.saveToLocalStorage(tweetObj);
-    let tweetList = this.getFromLocalStorage();
     this.setState(prevState => { 
-      return {tweets: [tweetObj, ...prevState.tweets] }
+      return { tweets: [tweetObj, ...prevState.tweets] }
     });
   }
 

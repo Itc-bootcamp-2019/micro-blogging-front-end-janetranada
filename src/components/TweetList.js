@@ -12,7 +12,7 @@ const TweetList = () => {
                                 <div>{tweet.userName}</div>
                                 <div>{tweet.date}</div>
                             </div>
-                            <div>{tweet.content}</div>
+                            <div className="tweet-content-post">{tweet.content}</div>
                         </div>
                     )
                 )}
