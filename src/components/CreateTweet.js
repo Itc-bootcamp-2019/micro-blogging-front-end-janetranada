@@ -1,22 +1,24 @@
 import React from 'react'
 import MyAppContext from '../contexts/MyAppContext';
 
-
 class CreateTweet extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             tweet: '',
-            btnDisabled: true
+            btnDisabled: true,
+            moreThan140: false
         }
     }
 
     handleTweetChange(event) {
         this.setState({ tweet: event.target.value }, () =>{
             if (this.state.tweet.length <= 140 && this.state.tweet.length > 0) {                
-                this.setState({btnDisabled: false});                              
+                this.setState({btnDisabled: false, moreThan140: false});                              
+            } else if (this.state.tweet.length > 140) {
+                this.setState({btnDisabled: true, moreThan140: true});   
             } else {
-                this.setState({btnDisabled: true});   
+                this.setState({btnDisabled: true, moreThan140: false});   
             }
         })
     }
@@ -26,7 +28,7 @@ class CreateTweet extends React.Component {
     // }
 
     render() {
-        const { tweet } = this.state;
+        const { tweet, moreThan140 } = this.state;
 
         return (
             <MyAppContext.Consumer>
@@ -39,6 +41,13 @@ class CreateTweet extends React.Component {
                             onChange={(event) => this.handleTweetChange(event)}
                         >                    
                         </textarea>
+
+                        {moreThan140 && 
+                            <div className="warning-length">
+                                The tweet can't contain more than 140 chars.
+                            </div>
+                        }
+                        
                         <button 
                             className="white-text my-button"
                             onClick={() => addTweet(tweet)}

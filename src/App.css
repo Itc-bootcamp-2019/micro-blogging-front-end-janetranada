@@ -112,9 +112,17 @@ a.selected {
 .my-button:disabled {
   opacity: 0.5;
 }
-
 .tweet-input-container>.my-button{
   position: absolute;
   bottom: 20px;
   right: 10px;
+}
+.warning-length {
+  background-color: #F8D7DA;
+  padding: 7px 4px;
+  position: absolute;
+  bottom: 20px;
+  left: 16px;
+  color: #721C24;
+  border-radius: 4px;
 }
