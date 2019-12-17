@@ -23,10 +23,6 @@ class CreateTweet extends React.Component {
         })
     }
 
-    // handleClick(tweet){
-    //     addTweet(tweet);
-    // }
-
     render() {
         const { tweet, moreThan140 } = this.state;
 
@@ -39,6 +35,7 @@ class CreateTweet extends React.Component {
                             className="tweet-text-area white-text"
                             placeholder="What do you have in mind.."
                             onChange={(event) => this.handleTweetChange(event)}
+                            value={this.state.tweet}
                         >                    
                         </textarea>
 
@@ -50,7 +47,10 @@ class CreateTweet extends React.Component {
                         
                         <button 
                             className="white-text my-button"
-                            onClick={() => addTweet(tweet)}
+                            onClick={() => {
+                                addTweet(tweet);
+                                this.setState({tweet: ''});
+                            }}
                             disabled = {this.state.btnDisabled}
                         >
                             Tweet
