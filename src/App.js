@@ -6,7 +6,7 @@ import CreateTweet from './components/CreateTweet';
 import MyAppContext from './contexts/MyAppContext';
 import TweetList from './components/TweetList';
 import { getTweets, postTweet } from './lib/api';
-import PostingError from './components/PostingError';
+import ServerError from './components/ServerError';
 
 class App extends React.Component {
   constructor(props) {
@@ -14,9 +14,10 @@ class App extends React.Component {
     this.state = {
       tweets: [],
       addTweet: this.handleOnSubmit.bind(this),
+      isPostingTweet: false,
       loadingTweets: true,
-      failedPostingTweet: false,
-      errorMsg: ''
+      serverFailure: false,
+      serverErrorMsg: ''
     };
   }
 
@@ -27,47 +28,62 @@ class App extends React.Component {
       userName: 'Eve',
       date: dateISO
     };
-    this.postTweetToServer(tweetObj);    
+    this.postTweetToServer(tweetObj);
   }
 
   componentDidMount() {
-    getTweets().then(response => {
-      this.setState({ 
-        tweets: response.data.tweets, 
-        loadingTweets: false 
-      });
-    })
+    getTweets()
+      .then(response => {
+        this.setState({
+          tweets: response.data.tweets,
+          loadingTweets: false
+        });
+      })
+      .catch(error => {
+        this.handleServerError(error);
+      })
   }
 
   postTweetToServer = (tweetObj) => {
+    this.setState({ isPostingTweet: true })
     postTweet(tweetObj)
       .then(response => {
         const { tweets } = this.state;
-        this.setState({ tweets: [tweetObj, ...tweets] });
+        this.setState({ tweets: [tweetObj, ...tweets] }); 
+        this.setState({ isPostingTweet: false });              
       })
       .catch(error => {
-        this.setState({errorMsg: error.response.data});
-        this.setState({failedPostingTweet: true})
+        this.handleServerError(error);
       });
   }
 
-  exitPostingError = () => {
-    this.setState({failedPostingTweet: false});
+  handleServerError = (error) => {
+    this.setState({ 
+      serverErrorMsg: error.response.data, 
+      serverFailure: true 
+    });
+  }
+
+  exitServerError = () => {
+    this.setState({ 
+      serverFailure: false, 
+      isPostingTweet: false 
+    });    
   }
 
   render() {
-    const {loadingTweets, failedPostingTweet, errorMsg} = this.state;
+    const { loadingTweets, serverFailure, serverErrorMsg } = this.state;
     return (
       <div className="App">
 
-        <Navbar />  
+        <Navbar />
 
-        {failedPostingTweet && <PostingError errorMsgFromServer={errorMsg} exitPostingError={this.exitPostingError}/>}    
+        {serverFailure && <ServerError errorMsgFromServer={serverErrorMsg} exitServerError={this.exitServerError} />}
 
         <MyAppContext.Provider value={this.state}>
           <CreateTweet />
 
-          {loadingTweets && 
+          {loadingTweets &&
             (
               <div>
                 <h1>Loading...</h1>
@@ -75,7 +91,7 @@ class App extends React.Component {
               </div>
             )
           }
-          
+
           {!loadingTweets && <TweetList />}
         </MyAppContext.Provider>
 

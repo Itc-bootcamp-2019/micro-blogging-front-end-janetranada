@@ -1,21 +1,21 @@
 import React from 'react';
 
-const PostingError = (props) => {
-    const {exitPostingError, errorMsgFromServer} = props;
+const ServerError = (props) => {
+    const {exitServerError, errorMsgFromServer} = props;
 
     return (
         <div className="post-error-wrapper">
             <div className="post-error-content">
                 <p className="server-error-msg">
                     Well, this is embarassing... <br />
-                    We encountered this error while posting your tweet:
+                    We encountered this error from the server:
                 </p>
                 <p className="server-error-msg red">
                     {errorMsgFromServer}
                 </p>
                 <button 
                     className="post-error-btn white-text" 
-                    onClick={() => exitPostingError()}
+                    onClick={() => exitServerError()}
                 >
                     Close
                 </button>
@@ -24,4 +24,4 @@ const PostingError = (props) => {
     )
 }
 
-export default PostingError;
+export default ServerError;

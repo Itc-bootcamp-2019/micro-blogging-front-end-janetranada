@@ -18,7 +18,7 @@ class CreateTweet extends React.Component {
 
         return (
             <MyAppContext.Consumer>
-                {({tweets, addTweet}) => (
+                {({tweets, addTweet, isPostingTweet}) => (
                     <div className="tweet-input-container">
                         <textarea 
                             id="tweet-user-input"
@@ -26,6 +26,7 @@ class CreateTweet extends React.Component {
                             placeholder="What do you have in mind.."
                             onChange={(event) => this.handleTweetChange(event)}
                             value={this.state.tweet}
+                            disabled={isPostingTweet}
                         >                    
                         </textarea>
 
@@ -34,7 +35,7 @@ class CreateTweet extends React.Component {
                                 The tweet can't contain more than 140 chars.
                             </div>
                         }
-                        
+
                         <button 
                             className="white-text my-button"
                             onClick={() => {

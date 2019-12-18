@@ -5,9 +5,9 @@ const TweetList = () => {
     return (
         <div className="tweets-container">
             <MyAppContext.Consumer>
-                {({ tweets, addTweet }) => (
+                {({ tweets, addTweet, isPostingTweet }) => (
                     tweets.map((tweet, index) =>
-                        <div key={index} className="tweet-item-container">
+                        <div key={tweet.userName + tweet.date} className="tweet-item-container">
                             <div className='tweet-info'>
                                 <div>{tweet.userName}</div>
                                 <div>{tweet.date}</div>

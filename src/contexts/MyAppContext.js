@@ -2,7 +2,8 @@ import React from 'react';
 
 const MyAppContext = React.createContext({
     tweets: [],
-    addTweet: (tweet) => { }
+    addTweet: (tweet) => { },
+    isPostingTweet: ''
 });
 
 export default MyAppContext;
