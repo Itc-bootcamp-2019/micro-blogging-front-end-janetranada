@@ -15,7 +15,8 @@ class App extends React.Component {
       tweets: [],
       addTweet: this.handleOnSubmit.bind(this),
       loadingTweets: true,
-      failedPostingTweet: false
+      failedPostingTweet: false,
+      errorMsg: ''
     };
   }
 
@@ -45,6 +46,7 @@ class App extends React.Component {
         this.setState({ tweets: [tweetObj, ...tweets] });
       })
       .catch(error => {
+        this.setState({errorMsg: error.response.data});
         this.setState({failedPostingTweet: true})
       });
   }
@@ -54,13 +56,13 @@ class App extends React.Component {
   }
 
   render() {
-    const {loadingTweets, failedPostingTweet} = this.state;
+    const {loadingTweets, failedPostingTweet, errorMsg} = this.state;
     return (
       <div className="App">
 
         <Navbar />  
 
-        {failedPostingTweet && <PostingError exitPostingError={this.exitPostingError}/>}    
+        {failedPostingTweet && <PostingError errorMsgFromServer={errorMsg} exitPostingError={this.exitPostingError}/>}    
 
         <MyAppContext.Provider value={this.state}>
           <CreateTweet />

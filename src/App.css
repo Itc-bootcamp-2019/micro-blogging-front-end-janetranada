@@ -147,7 +147,7 @@ a.selected {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -60%);
-  height: 200px;
+  height: 230px;
   width: 300px;
   padding: 10px;
   display: flex;
@@ -166,4 +166,10 @@ a.selected {
 .post-error-btn:hover {
   background-color: #007BFF;
   box-shadow: 0 0 0 0.1rem black;
+}
+.server-error-msg {
+  margin-top: 0;  
+}
+.server-error-msg.red{
+  color: red;
 }
