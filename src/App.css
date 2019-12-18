@@ -107,7 +107,7 @@ a.selected {
   height: 34px;
   width: 68px;
 }
-.my-button:disabled {
+.tweet-input-container>.my-button:disabled {
   opacity: 0.5;
 }
 .tweet-input-container>.my-button{
@@ -127,4 +127,43 @@ a.selected {
 .loading-img {
   height: 150px;
   width: 150px;
+}
+
+.post-error-wrapper {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color:rgba(0,0,0,0.5); 
+  z-index: 12345;
+}
+
+.post-error-content {
+  line-height: 25px;
+  background-color: #f4f9f4;
+  color: black;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -60%);
+  height: 200px;
+  width: 300px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;  
+  border-radius: 6px;
+  text-align: center;
+}
+.post-error-btn {
+  background-color: #4a69bb;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;  
+}
+.post-error-btn:hover {
+  background-color: #007BFF;
+  box-shadow: 0 0 0 0.1rem black;
 }

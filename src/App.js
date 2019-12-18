@@ -6,6 +6,7 @@ import CreateTweet from './components/CreateTweet';
 import MyAppContext from './contexts/MyAppContext';
 import TweetList from './components/TweetList';
 import { getTweets, postTweet } from './lib/api';
+import PostingError from './components/PostingError';
 
 class App extends React.Component {
   constructor(props) {
@@ -13,7 +14,8 @@ class App extends React.Component {
     this.state = {
       tweets: [],
       addTweet: this.handleOnSubmit.bind(this),
-      loading: true
+      loadingTweets: true,
+      failedPostingTweet: false
     };
   }
 
@@ -31,7 +33,7 @@ class App extends React.Component {
     getTweets().then(response => {
       this.setState({ 
         tweets: response.data.tweets, 
-        loading: false 
+        loadingTweets: false 
       });
     })
   }
@@ -43,19 +45,27 @@ class App extends React.Component {
         this.setState({ tweets: [tweetObj, ...tweets] });
       })
       .catch(error => {
-        console.log(error.response);
+        this.setState({failedPostingTweet: true})
       });
   }
 
+  exitPostingError = () => {
+    this.setState({failedPostingTweet: false});
+  }
+
   render() {
-    const {loading} = this.state;
+    const {loadingTweets, failedPostingTweet} = this.state;
     return (
       <div className="App">
 
-        <Navbar />
+        <Navbar />  
+
+        {failedPostingTweet && <PostingError exitPostingError={this.exitPostingError}/>}    
+
         <MyAppContext.Provider value={this.state}>
           <CreateTweet />
-          {loading && 
+
+          {loadingTweets && 
             (
               <div>
                 <h1>Loading...</h1>
@@ -63,8 +73,8 @@ class App extends React.Component {
               </div>
             )
           }
-
-          {!loading && <TweetList />}
+          
+          {!loadingTweets && <TweetList />}
         </MyAppContext.Provider>
 
       </div>
