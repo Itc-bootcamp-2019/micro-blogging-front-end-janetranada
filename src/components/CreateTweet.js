@@ -39,7 +39,7 @@ class CreateTweet extends React.Component {
                             className="white-text my-button"
                             onClick={() => {
                                 addTweet(tweet);
-                                this.setState({tweet: '', btnDisabled: true});
+                                this.setState({tweet: ''});
                             }}
                             disabled = {tweet.length > 140 || tweet.length === 0}
                         >

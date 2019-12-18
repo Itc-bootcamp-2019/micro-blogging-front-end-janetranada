@@ -1,5 +1,5 @@
 import React from 'react';
-import loadingDots from './components/images/loadingDots.gif'
+import loadingIcon from './images/loading-icon.jpg'
 import './App.css';
 import Navbar from './components/Navbar';
 import CreateTweet from './components/CreateTweet';
@@ -18,44 +18,32 @@ class App extends React.Component {
   }
 
   handleOnSubmit(tweet) {
-    this.setState({loading: true});
     let dateISO = (new Date()).toISOString();
     let tweetObj = {
       content: tweet,
       userName: 'Eve',
       date: dateISO
     };
-
-    this.postTweetToServer(tweetObj);
-    // this.setState(prevState => {
-    //   return { tweets: [tweetObj, ...prevState.tweets] }
-    // });
+    this.postTweetToServer(tweetObj);    
   }
 
   componentDidMount() {
     getTweets().then(response => {
-      this.setState({ tweets: response.data.tweets, loading: false });
+      this.setState({ 
+        tweets: response.data.tweets, 
+        loading: false 
+      });
     })
-  }
-
-  getTweetsFromServer = () => {
-    getTweets().then(response => {
-      return response.data.tweets;
-    });
   }
 
   postTweetToServer = (tweetObj) => {
     postTweet(tweetObj)
       .then(response => {
-        console.log(response);
-        this.setState(prevState => {
-          return { tweets: [tweetObj, ...prevState.tweets] }
-        });
-        this.setState({loading: false});
+        const { tweets } = this.state;
+        this.setState({ tweets: [tweetObj, ...tweets] });
       })
       .catch(error => {
         console.log(error.response);
-
       });
   }
 
@@ -67,8 +55,15 @@ class App extends React.Component {
         <Navbar />
         <MyAppContext.Provider value={this.state}>
           <CreateTweet />
-          {/* {loading && <img className="loading-img" src={loadingDots} />} */}
-          {loading && <h2>Loading..</h2>}
+          {loading && 
+            (
+              <div>
+                <h1>Loading...</h1>
+                <img className="loading-img" src={loadingIcon} />
+              </div>
+            )
+          }
+
           {!loading && <TweetList />}
         </MyAppContext.Provider>
 
