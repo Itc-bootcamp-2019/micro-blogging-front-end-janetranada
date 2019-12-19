@@ -21,22 +21,23 @@ class MainPage extends React.Component {
     };
   }
 
-  handleOnSubmit(tweet) {
-    let dateISO = (new Date()).toISOString();
-    let tweetObj = {
-      content: tweet,
-      userName: 'Eve',
-      date: dateISO
-    };
-    this.postTweetToServer(tweetObj);
-  }
-
   componentDidMount() {
     this.interval = setInterval(this.getTweetsFromServer, 6000);
   }
 
   componentWillUnmount() {
-    clearInterval(this.interval);    
+    clearInterval(this.interval);
+  }
+
+  handleOnSubmit(tweet) {
+    let currentUserName = JSON.parse(localStorage.getItem('usernameStored')) || ["Eve"];
+    let dateISO = (new Date()).toISOString();
+    let tweetObj = {
+      content: tweet,
+      userName: currentUserName.toString(),
+      date: dateISO
+    };
+    this.postTweetToServer(tweetObj);
   }
 
   getTweetsFromServer = () => {

@@ -1,15 +1,23 @@
 import React from 'react';
 
+function saveUsernameToLocalStorage (usernameInput) {
+    const usernameStored = JSON.parse(localStorage.getItem('usernameStored')) || ["Eve"];
+    usernameStored.push(usernameInput);
+    usernameStored.shift(usernameInput);
+    localStorage.setItem("usernameStored", JSON.stringify(usernameStored));
+}
+
 class User extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            user: 'Eve'
+            userInput: JSON.parse(localStorage.getItem('usernameStored')) || ["Eve"]
         }
     }
 
     render() {
-        const { user } = this.state;
+        const { userInput } = this.state;
+
         return (
             <div className="user-profile-container">
                 <p className="profile-header">Profile</p>
@@ -17,14 +25,14 @@ class User extends React.Component {
                 <input 
                     className="username-input" 
                     placeholder="Please enter a username"
-                    value={user}
-                    onChange={event => this.setState({ user: event.target.value })}
+                    value={userInput}
+                    onChange={event => this.setState({ userInput: event.target.value })}
                 />                   
                 
                 <button 
                     className="white-text my-button profile-page"
-                    onClick={() => {}}
-                    disabled={user.length === 0}
+                    onClick={() => saveUsernameToLocalStorage(userInput)}
+                    disabled={userInput.length === 0}
                 >
                     Save
                 </button>

@@ -17,8 +17,7 @@ function App() {
           </Route>
           <Route path="/user">
             <User />
-          </Route>
-         
+          </Route>         
         </Switch>
       </Router>
     </div>
