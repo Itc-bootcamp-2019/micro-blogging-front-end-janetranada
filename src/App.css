@@ -2,104 +2,14 @@
   box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
 }
-
 body {
   background-color: #15202B;
-  color: #CCC;
-  font-family: 'Roboto', sans-serif;
+  color: #FFFFFF;
   padding: 0;
-}
-
-.main-page {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.navbar {
-  position: fixed;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #343A40;
-  border-radius: 6px;
-  font-size: 14px;
-  line-height: 16px;
-  padding-top: 19px;
-  padding-bottom: 23px;
-  width: 75%;
-  z-index: 123;
-}
-.navbar-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.navbar-list-item {
-  display: inline;
-  margin: 0 3%;
-}
-
-.navbar-item-link {
-  text-decoration: none;
-  color: rgba(255, 255, 255, 0.5);
-}
-.selected {
-  color: white;
-}
-
-.tweet-input-container {
-  margin-top: 83px;
-  border-radius: 6px;
-  min-height: 180px;
-  position: relative;
-  width: 41.67%;
-  border: 2px solid #CCC;  
-  overflow: hidden;
-}
-.tweet-text-area {
-  background-color: transparent;
-  position: absolute;
-  top: 20px;
-  left: 16px;
-  width: 94%;
-  font-size: 16px;
-  line-height: 19px;
-  border: none;
-  min-height: 123px;  
-  resize: none;
-}
-.tweet-text-area:focus{
-  outline: 0;
-}
-.tweets-container {
-  display: flex;
-  flex-direction: column;
-  width: 41.67%;
-  margin-top: 20px;
-}
-
-.tweet-item-container {  
-    margin-bottom: 10px;
-    background-color: #343A40;
-    border-radius: 4px;  
-    padding: 20px;
-}
-
-.tweet-info {
-  display: flex;
-  justify-content: space-between;
-  color: #6C757D;
-  font-size: 14px;
-  margin-bottom: 14px;
-}
-.tweet-content-post {
-  overflow-wrap: break-word;
 }
 
 .white-text {
   color: white;
-  font-family: 'Roboto', sans-serif;
 }
 .my-button {
   background-color: #007BFF;
@@ -109,82 +19,25 @@ body {
   height: 34px;
   width: 68px;
 }
-.tweet-input-container>.my-button:disabled {
-  opacity: 0.5;
-}
-.tweet-input-container>.my-button{
-  position: absolute;
-  bottom: 20px;
-  right: 10px;
-}
-.warning-length {
-  background-color: #F8D7DA;
-  padding: 7px 4px;
-  position: absolute;
-  bottom: 20px;
-  left: 16px;
-  color: #721C24;
-  border-radius: 4px;
+
+.main-page {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .loading-img {
   height: 150px;
   width: 150px;
 }
 
-.post-error-wrapper {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background-color:rgba(0,0,0,0.5); 
-  z-index: 12345;
-}
-
-.post-error-content {
-  line-height: 25px;
-  background-color: #f4f9f4;
-  color: black;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -60%);
-  min-height: 200px;
-  width: 350px;
-  padding: 20px 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;  
-  border-radius: 6px;
-  text-align: center;
-  overflow: hidden;
-}
-.post-error-btn {
-  background-color: #4a69bb;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 4px;  
-}
-.post-error-btn:hover {
-  background-color: #007BFF;
-  box-shadow: 0 0 0 0.1rem black;
-}
-.post-error-btn:focus{
-  outline: 0;
-}
-.server-error-msg {
-  margin-top: 0;  
-}
-.server-error-msg.red{
-  color: red;
-}
 .profile-header {
   font-size: 36px;
   margin-top: 0;
   margin-bottom: 26px;
 }
 .username-header {
+  color: rgba(255, 255, 255, 0.8);
   font-size: 18px;
   margin-top: 0;
   margin-bottom: 6px;
@@ -197,7 +50,6 @@ body {
   transform: translateX(-50%);
   width: 41.67%;
 }
-
 .username-input {
   background-color: transparent;
   color: #FFFFFF;
@@ -212,13 +64,11 @@ body {
   padding: 20px 16px 22px;
   outline: none;
 }
-
 .my-button.profile-page{
   margin-top: 16px;
   position: absolute;
   right: 10px;
 }
-
 .my-button.profile-page {
   outline: none;
 }

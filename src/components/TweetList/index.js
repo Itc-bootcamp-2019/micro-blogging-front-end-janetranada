@@ -1,5 +1,6 @@
-import React from 'react'
-import MyAppContext from '../contexts/MyAppContext';
+import React from 'react';
+import MyAppContext from '../../contexts/MyAppContext';
+import "./styles.css";
 
 const TweetList = () => {
     return (

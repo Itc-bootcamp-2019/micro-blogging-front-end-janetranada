@@ -1,11 +1,11 @@
 import React from 'react';
 import loadingIcon from '../images/loading-icon.jpg';
 import '../App.css';
-import CreateTweet from '../components/CreateTweet';
+import CreateTweet from '../components/CreateTweet/index';
 import MyAppContext from '../contexts/MyAppContext';
-import TweetList from '../components/TweetList';
+import TweetList from '../components/TweetList/index';
 import { getTweets, postTweet } from '../lib/api';
-import ServerError from '../components/ServerError';
+import ServerError from '../components/ServerError/index';
 
 class MainPage extends React.Component {
   constructor(props) {

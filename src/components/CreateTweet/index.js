@@ -1,5 +1,6 @@
 import React from 'react'
-import MyAppContext from '../contexts/MyAppContext';
+import MyAppContext from '../../contexts/MyAppContext';
+import "./styles.css";
 
 class CreateTweet extends React.Component {
     constructor(props) {

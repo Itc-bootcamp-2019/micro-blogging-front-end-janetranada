@@ -1,0 +1,30 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #343A40;
+    border-radius: 6px;
+    font-size: 14px;
+    line-height: 16px;
+    padding-top: 19px;
+    padding-bottom: 23px;
+    width: 75%;
+    z-index: 123;
+  }
+  .navbar-item-link {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.5);
+  }
+  .navbar-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .navbar-list-item {
+    display: inline;
+    margin: 0 3%;
+  }  
+  .selected {
+    color: #FFFFFF;
+  }

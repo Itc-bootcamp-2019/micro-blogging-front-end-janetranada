@@ -1,0 +1,22 @@
+.tweets-container {
+    display: flex;
+    flex-direction: column;
+    width: 41.67%;
+    margin-top: 20px;
+}
+.tweet-item-container {  
+    margin-bottom: 10px;
+    background-color: #343A40;
+    border-radius: 4px;  
+    padding: 20px;
+}
+.tweet-info {
+    display: flex;
+    justify-content: space-between;
+    color: #6C757D;
+    font-size: 14px;
+    margin-bottom: 14px;
+}
+.tweet-content-post {
+    overflow-wrap: break-word;
+}
