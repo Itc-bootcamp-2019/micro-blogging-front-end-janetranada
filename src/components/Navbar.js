@@ -1,15 +1,15 @@
 import React from 'react'
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
     return (
         <nav className="navbar">
             <ul className="navbar-list">
                 <li className="navbar-list-item">
-                    <Link to="/">Home</Link>
+                    <NavLink exact to="/" className="navbar-item-link" activeClassName="selected">Home</NavLink>
                 </li>
                 <li className="navbar-list-item">
-                    <Link to="/user">Profile</Link>
+                    <NavLink to="/user" className="navbar-item-link" activeClassName="selected">Profile</NavLink>
                 </li>
             </ul>
         </nav>
