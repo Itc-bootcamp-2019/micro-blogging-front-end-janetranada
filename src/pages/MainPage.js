@@ -1,5 +1,5 @@
 import React from 'react';
-import loadingIcon from '../images/loading-icon.jpg'
+import loadingIcon from '../images/loading-icon.jpg';
 import '../App.css';
 import CreateTweet from '../components/CreateTweet';
 import MyAppContext from '../contexts/MyAppContext';
@@ -10,6 +10,7 @@ import ServerError from '../components/ServerError';
 class MainPage extends React.Component {
   constructor(props) {
     super(props);
+    this.interval = null;
     this.state = {
       tweets: [],
       addTweet: this.handleOnSubmit.bind(this),
@@ -31,6 +32,14 @@ class MainPage extends React.Component {
   }
 
   componentDidMount() {
+    this.interval = setInterval(this.getTweetsFromServer, 6000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
+
+  getTweetsFromServer = () => {
     getTweets()
       .then(response => {
         this.setState({
@@ -48,8 +57,8 @@ class MainPage extends React.Component {
     postTweet(tweetObj)
       .then(response => {
         const { tweets } = this.state;
-        this.setState({ tweets: [tweetObj, ...tweets] }); 
-        this.setState({ isPostingTweet: false });              
+        this.setState({ tweets: [tweetObj, ...tweets] });
+        this.setState({ isPostingTweet: false });
       })
       .catch(error => {
         this.handleServerError(error);
@@ -57,17 +66,17 @@ class MainPage extends React.Component {
   }
 
   handleServerError = (error) => {
-    this.setState({ 
-      serverErrorMsg: error.response.data, 
-      serverFailure: true 
+    this.setState({
+      serverErrorMsg: error.response.data,
+      serverFailure: true
     });
   }
 
   exitServerError = () => {
-    this.setState({ 
-      serverFailure: false, 
-      isPostingTweet: false 
-    });    
+    this.setState({
+      serverFailure: false,
+      isPostingTweet: false
+    });
   }
 
   render() {
@@ -82,7 +91,7 @@ class MainPage extends React.Component {
             (
               <div>
                 <h1>Loading...</h1>
-                <img className="loading-img" src={loadingIcon} alt="loading-icon"/>
+                <img className="loading-img" src={loadingIcon} alt="loading-icon" />
               </div>
             )
           }
