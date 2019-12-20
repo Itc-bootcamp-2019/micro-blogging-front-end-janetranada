@@ -10,8 +10,8 @@ const TweetList = () => {
                     tweets.map((tweet, index) =>
                         <div key={tweet.userName + tweet.date} className="tweet-item-container">
                             <div className='tweet-info'>
-                                <div>{tweet.userName}</div>
-                                <div>{tweet.date}</div>
+                                <div className='tweet-info-username'>{tweet.userName}</div>
+                                <div className='tweet-info-date'>{tweet.date}</div>
                             </div>
                             <div className="tweet-content-post">{tweet.content}</div>
                         </div>

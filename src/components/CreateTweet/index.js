@@ -25,6 +25,7 @@ class CreateTweet extends React.Component {
                             id="tweet-user-input"
                             className="tweet-text-area white-text"
                             placeholder="What do you have in mind.."
+                            spellCheck='false'
                             onChange={(event) => {this.handleTweetChange(event)}}
                             value={this.state.tweet}
                             disabled={isPostingTweet}

@@ -24,15 +24,16 @@ class User extends React.Component {
                 <p className="username-header">User Name</p>
                 <input 
                     className="username-input" 
-                    placeholder="Please enter a username"
-                    value={userInput}
-                    onChange={event => this.setState({ userInput: event.target.value })}
+                    placeholder="Enter a username (whitespace not allowed)"
+                    spellCheck='false'
+                    value={userInput.toString()}
+                    onChange={event => this.setState({ userInput: event.target.value.replace(" ", "")})}
                 />                   
                 
                 <button 
                     className="white-text my-button profile-page"
                     onClick={() => saveUsernameToLocalStorage(userInput)}
-                    disabled={userInput.length === 0}
+                    disabled={userInput.toString() === ''}
                 >
                     Save
                 </button>

@@ -19,13 +19,14 @@
     background-color: transparent;
     position: absolute;
     top: 20px;
-    left: 16px;
+    left: 2.67%;
     width: 94%;
     font-size: 16px;
     line-height: 19px;
     border: none;
     min-height: 123px;  
     resize: none;
+    overflow: hidden;
 }
 .tweet-text-area:focus{
     outline: 0;
@@ -35,7 +36,29 @@
     padding: 7px 4px;
     position: absolute;
     bottom: 20px;
-    left: 16px;
+    left: 2.67%;
     color: #721C24;
     border-radius: 4px;
+}
+
+@media screen and (max-width: 1024px) {
+    
+    .warning-length,
+    .tweet-input-container>.my-button,
+    .tweet-text-area {
+        position: relative;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        /* border: 1px solid red; */
+        align-items: center;
+    }
+    .tweet-input-container {
+        padding: 2.67%;
+    }
+    .tweet-input-container>.my-button {
+        margin-top: 5px;
+        float: right;
+    }
 }

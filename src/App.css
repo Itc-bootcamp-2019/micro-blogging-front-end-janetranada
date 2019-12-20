@@ -68,10 +68,13 @@ body {
   margin-top: 16px;
   position: absolute;
   right: 10px;
-}
-.my-button.profile-page {
   outline: none;
+  transition: width 2s, height 2s, ease-in-out;
 }
 .my-button.profile-page:disabled {
   opacity: 0.5;
+}
+.my-button.profile-page:active {
+  height: 33px;
+  width: 67px;
 }
