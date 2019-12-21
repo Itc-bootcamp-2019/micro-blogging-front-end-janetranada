@@ -3,7 +3,7 @@ import React from 'react';
 function saveUsernameToLocalStorage (usernameInput) {
     const usernameStored = JSON.parse(localStorage.getItem('usernameStored')) || ["Eve"];
     usernameStored.push(usernameInput);
-    usernameStored.shift(usernameInput);
+    usernameStored.shift();
     localStorage.setItem("usernameStored", JSON.stringify(usernameStored));
 }
 
