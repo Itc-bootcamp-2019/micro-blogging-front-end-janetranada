@@ -22,6 +22,7 @@ class MainPage extends React.Component {
   }
 
   componentDidMount() {
+    this.getTweetsFromServer();
     this.interval = setInterval(this.getTweetsFromServer, 6000);
   }
 
