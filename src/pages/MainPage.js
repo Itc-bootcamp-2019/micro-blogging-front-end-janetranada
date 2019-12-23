@@ -1,11 +1,13 @@
 import React from 'react';
-import { getTweets, postTweet } from '../lib/api';
 import loadingIcon from '../images/loading-icon.jpg';
 import '../App.css';
 import CreateTweet from '../components/CreateTweet/index';
 import MyAppContext from '../contexts/MyAppContext';
 import TweetList from '../components/TweetList/index';
 import ServerError from '../components/ServerError/index';
+import firebase from '../lib/firestore';
+
+const db = firebase.firestore();
 
 class MainPage extends React.Component {
   constructor(props) {
@@ -42,10 +44,14 @@ class MainPage extends React.Component {
   }
 
   getTweetsFromServer = () => {
-    getTweets()
-      .then(response => {
+    let dbTweets = [];
+    db.collection("tweets").orderBy('date', 'desc').get()
+      .then((snapshot) => {
+        snapshot.docs.forEach(doc => {
+          dbTweets.push(doc.data())
+        });
         this.setState({
-          tweets: response.data.tweets,
+          tweets: dbTweets,
           loadingTweets: false
         });
       })
@@ -56,8 +62,8 @@ class MainPage extends React.Component {
 
   postTweetToServer = (tweetObj) => {
     this.setState({ isPostingTweet: true })
-    postTweet(tweetObj)
-      .then(response => {
+    db.collection("tweets").add(tweetObj)
+      .then(() => {
         const { tweets } = this.state;
         this.setState({ tweets: [tweetObj, ...tweets] });
         this.setState({ isPostingTweet: false });
