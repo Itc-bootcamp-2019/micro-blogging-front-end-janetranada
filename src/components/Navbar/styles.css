@@ -28,3 +28,7 @@
   .selected {
     color: #FFFFFF;
   }
+  .logout {
+    float: right;
+    margin-inline-end: 3%;
+  }

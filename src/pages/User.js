@@ -18,9 +18,9 @@ class User extends React.Component {
         const { userInput } = this.state;
 
         return (
-            <div className="user-profile-container">
-                <p className="profile-header">Profile</p>
-                <p className="username-header">User Name</p>
+            <div className="page-container">
+                <p className="page-header">Profile</p>
+                <p className="page-subheader">User Name</p>
                 <input 
                     className="username-input" 
                     placeholder="Enter a username (whitespace not allowed)"

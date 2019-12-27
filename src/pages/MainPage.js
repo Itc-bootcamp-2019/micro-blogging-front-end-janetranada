@@ -33,7 +33,7 @@ class MainPage extends React.Component {
   }
 
   handleOnSubmit(tweet) {
-    let currentUserName = JSON.parse(localStorage.getItem('usernameStored')) || ["Eve"];
+    let currentUserName = JSON.parse(localStorage.getItem('usernameStored')) || "Eve";
     let dateISO = (new Date()).toISOString();
     let tweetObj = {
       content: tweet,

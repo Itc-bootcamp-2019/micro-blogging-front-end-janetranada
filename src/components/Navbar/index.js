@@ -12,6 +12,15 @@ const Navbar = () => {
                 <li className="navbar-list-item">
                     <NavLink to="/user" className="navbar-item-link" activeClassName="selected">Profile</NavLink>
                 </li>
+                <li className="navbar-list-item">
+                    <NavLink to="/login" className="navbar-item-link" activeClassName="selected">Log-in</NavLink>
+                </li>
+                <li className="navbar-list-item">
+                    <NavLink to="/signup" className="navbar-item-link" activeClassName="selected">Sign-up</NavLink>
+                </li>
+                <li className="navbar-list-item">
+                    <NavLink to="/login" className="navbar-item-link logout" activeClassName="selected">Logout</NavLink>
+                </li>
             </ul>
         </nav>
     )

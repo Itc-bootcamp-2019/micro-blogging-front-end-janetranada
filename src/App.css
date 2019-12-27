@@ -31,26 +31,26 @@ body {
   width: 150px;
 }
 
-.profile-header {
+.page-header {
   font-size: 36px;
   margin-top: 0;
   margin-bottom: 26px;
 }
-.username-header {
+.page-subheader {
   color: rgba(255, 255, 255, 0.8);
   font-size: 18px;
   margin-top: 0;
   margin-bottom: 6px;
 }
-.user-profile-container {
-  border-radius: 6px;
+.page-container {
   position: absolute;
   top: 110px;
   left: 50%;
   transform: translateX(-50%);
   width: 41.67%;
 }
-.username-input {
+.username-input,
+.auth-input {
   background-color: transparent;
   color: #FFFFFF;
   border: 2px solid #CCC; 
@@ -63,6 +63,12 @@ body {
   align-items: center;
   padding: 20px 16px 22px;
   outline: none;
+}
+.auth-input:focus{
+  border-color: #3fc5f0;
+}
+.auth-input-container {
+  margin-bottom: 20px;
 }
 .my-button.profile-page{
   margin-top: 16px;
@@ -77,4 +83,10 @@ body {
 .my-button.profile-page:active {
   height: 33px;
   width: 67px;
+}
+.warning-password {
+  font-size: 0.8rem;
+  font-style: italic;
+  color: #f0134d;
+  margin-inline-start: 5px;
 }
